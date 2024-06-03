@@ -62,7 +62,7 @@ function App() {
 
 function Header() {
   //const style ={ color: "red", fontSize: "48px", textTransform: "uppercase" }
-  const style={}
+  const style = {};
   return (
     <header className="header">
       <h1 style={style}>fast react piza company</h1>
@@ -73,12 +73,42 @@ function Header() {
 function Menu() {
   return (
     <main className="menu">
-      <h2>Our pizzas</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <h2>Our menu</h2>
+
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+
+      {/* <Pizza
+        name="pizza spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoname="pizzas/spinaci.jpg"
+        price={10}
+      />
+
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mozarella, mushrooms, and onion"
+        photoname="pizzas/funghi.jpg"
+        price={12}
+      /> */}
     </main>
+  );
+}
+
+function Pizza(props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div>
+        <h2>{props.pizzaObj.name}</h2>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price + 3}</span>
+      </div>
+    </div>
   );
 }
 
@@ -92,20 +122,12 @@ function Footer() {
   //   else alert("sorry we're closed");
 
   return (
-    <footer className="footer">{new Date().toLocaleTimeString()}. We're currently open</footer>
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We're currently open
+    </footer>
   );
 
   //return React.createElement('footer',null,"we're currently open")
-}
-
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="pizza spinaci" />
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
-  );
 }
 
 //react v18
